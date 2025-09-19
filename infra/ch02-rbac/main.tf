@@ -26,3 +26,25 @@ resource "azurerm_role_assignment" "helpdesk_vm_contributor" {
     role_definition_name = "Virtual Machine Contributor"
     principal_id = var.helpdesk_object_id
 }
+
+
+resource "azurerm_role_definition" "Custom Support Request " {
+    name = "Custom Support Request"
+    scope = azurerm_management_group.mg1.id
+    description = "A custom contributor role for support requests." 
+    permissions {
+        actions = [
+            "Microsoft.Support/*",
+            
+            ]
+        not_actions = [
+
+            "Microsoft.Support/register/action"
+            ]
+    }
+
+    assignable_scopes = [
+        azurerm_management_group.mg1.id
+    ]
+  
+}
