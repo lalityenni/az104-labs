@@ -16,4 +16,11 @@ Get-AzRoleAssignment -scope $mgscope |
     Select-Object DisplayName, Role DefinitionName, Prinicipalname, Scope |
     Format-Table -AutoSize
 
-    
+
+Get-AzActivityLog `
+  -scope $mgscope `
+    -StartTime (Get-Date).AddDays(-7) `
+    | Where-Object {$_.OperationNameValue -like "roleAssignments" } `
+
+    | Select-Object EventTimestamp, OperationNameValue , ActivityStatus, Caller |
+    | Format-Table -AutoSize
