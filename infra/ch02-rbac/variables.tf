@@ -6,7 +6,8 @@ variable "mg_name" {
 
 variable "mg_display_name" {
   type        = string
-  description = "The display name of the management group"      
+  description = "The display name of the management group"   
+  default = "az104-mg1"   
   
 }
 

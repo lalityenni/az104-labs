@@ -11,4 +11,10 @@ terraform {
     features {}
     
   } 
-  
+
+
+  resource "azurerm_management_group" "mg1" {
+    display_name = var.mg_display_name
+    name         = var.mg_name
+
+  }
