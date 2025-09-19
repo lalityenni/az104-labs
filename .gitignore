@@ -1,13 +1,15 @@
-# Terraform
-.terraform/
-*.tfstate
-*.tfstate.*
-crash.log
-*.tfvars
+# Terraform local state & cache
+.terraform/          # local provider & module cache
+*.tfstate            # local state file
+*.tfstate.*          # backup state files
+
+# Sensitive variable files
+*.tfvars             # local variables (do not commit secrets)
 *.tfvars.json
 
-# Lock file (optional: keep if you want reproducible builds)
-.terraform.lock.hcl.terraform/
+# Crash logs
+crash.log
+
+# Lock file (optional)
+# Keep this if you want reproducible builds across machines
 .terraform.lock.hcl
-*.tfstate
-*.tfvars
