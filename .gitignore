@@ -1,15 +1,18 @@
-# Terraform local state & cache
-.terraform/          # local provider & module cache
-*.tfstate            # local state file
-*.tfstate.*          # backup state files
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.tfstate.lock.info
 
-# Sensitive variable files
-*.tfvars             # local variables (do not commit secrets)
+# Plans & vars
+plan.tfplan
+*.tfvars
 *.tfvars.json
 
-# Crash logs
-crash.log
-
-# Lock file (optional)
-# Keep this if you want reproducible builds across machines
-.terraform.lock.hcl
+# macOS
+.DS_Store
