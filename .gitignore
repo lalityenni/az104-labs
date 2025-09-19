@@ -1,0 +1,13 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+*.tfvars.json
+
+# Lock file (optional: keep if you want reproducible builds)
+.terraform.lock.hcl.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfvars
