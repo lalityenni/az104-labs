@@ -13,7 +13,7 @@ New-AzRoleAssignment
 #audit: List the current role assignments at the Management group scope
 
 Get-AzRoleAssignment -scope $mgscope |
-    Select-Object DisplayName, Role DefinitionName, Prinicipalname, Scope |
+    Select-Object DisplayName, Role, DefinitionName, Prinicipalname, Scope |
     Format-Table -AutoSize
 
 
@@ -22,5 +22,5 @@ Get-AzActivityLog `
     -StartTime (Get-Date).AddDays(-7) `
     | Where-Object {$_.OperationNameValue -like "roleAssignments" } `
 
-    | Select-Object EventTimestamp, OperationNameValue , ActivityStatus, Caller |
+    | Select-Object EventTimestamp, OperationNameValue , ActivityStatus, Caller 
     | Format-Table -AutoSize
