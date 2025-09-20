@@ -11,6 +11,8 @@ override.tf.json
 plan.tfplan
 *.tfstate
 *.tfstate.*
+*.tfplan
+
 
 # Plans & vars
 plan.tfplan
