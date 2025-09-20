@@ -21,3 +21,6 @@ plan.tfplan
 
 # macOS
 .DS_Store
+
+**/.terraform/*
+.terraform.lock.hcl
