@@ -33,3 +33,9 @@ variable "sa_prefix" {
   type        = string
  
 }
+
+variable "file_path" {
+  description = "Path to the local file to upload"
+  type        = string
+
+}
