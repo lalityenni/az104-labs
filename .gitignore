@@ -8,6 +8,9 @@ override.tf.json
 *_override.tf
 *_override.tf.json
 .terraform.tfstate.lock.info
+plan.tfplan
+*.tfstate
+*.tfstate.*
 
 # Plans & vars
 plan.tfplan
