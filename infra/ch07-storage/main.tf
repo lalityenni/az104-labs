@@ -1,3 +1,9 @@
+variable "sa_prefix" {
+  description = "Prefix for the storage account name"
+  type        = string
+  default     = "az104sa"
+}
+
 terraform {
   required_version = ">= 1.6.0"
   required_providers {
@@ -10,9 +16,21 @@ terraform {
 provider "azurerm" {
   features {}
   resource_provider_registrations = "none"
-  subscription_id                 = "a2b28c85-1948-4263-90ca-bade2bac4df4"
+
 }
 
+
+resource "random_string" "suffix" {
+  length  = 6
+  lower   = true
+  upper   = false
+  numeric = true
+  special = false
+}
+
+locals {
+  sa_name = "${var.sa_prefix}${random_string.suffix.result}"  # e.g., az104saabc123
+}
 
 # Create VNet + subnet with Microsoft.Storage service endpoint
 
@@ -83,3 +101,7 @@ resource "azurerm_storage_container_immutability_policy" "Data_worm" {
   storage_container_resource_manager_id = azurerm_storage_container.data.id
   immutability_period_in_days           = 180
 }
+
+
+# Read-only SAS for blobs (valid 24 hours)
+
