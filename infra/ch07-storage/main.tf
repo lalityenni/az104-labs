@@ -42,9 +42,29 @@ resource "azurerm_storage_account" "storageaccount1" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
   min_tls_version          = "TLS1_2"
+
   network_rules {
     default_action             = "Deny"
     virtual_network_subnet_ids = [azurerm_subnet.subnet1.id]
+  
   }
+}
+   
+# Create lifecycle management policy to move blobs to Cool tier after 30 days
 
+resource "azurerm_storage_management_policy" "movetocool" {
+    storage_account_id = azurerm_storage_account.storageaccount1.id
+    rule {
+        name    = "move-to-cool"
+        enabled = true
+        filters {
+            blob_types = ["blockBlob"]
+        
+        }
+        actions {
+            base_blob {
+                tier_to_cool_after_days_since_modification_greater_than = 30
+            }
+        }
+    }
 }
