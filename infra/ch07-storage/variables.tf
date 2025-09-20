@@ -32,5 +32,5 @@ variable "subnet_name" {
 variable "storage_account_name" {
   description = "Globally unique SA name (lowercase, no dashes). Leave empty to auto-generate."
   type        = string
-  default     = "stkml"
+  
 }

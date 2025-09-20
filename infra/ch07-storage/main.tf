@@ -68,3 +68,18 @@ resource "azurerm_storage_management_policy" "movetocool" {
     }
   }
 }
+
+# Create a blob container   
+resource "azurerm_storage_container" "data" {
+  name                  = "data"
+  storage_account_id    = azurerm_storage_account.storageaccount1.id
+
+  container_access_type = "private"
+
+}
+
+#create immutable blob storage policy
+resource "azurerm_storage_container_immutability_policy" "Data_worm" {
+  storage_container_resource_manager_id = azurerm_storage_container.data.id
+  immutability_period_in_days           = 180
+}
